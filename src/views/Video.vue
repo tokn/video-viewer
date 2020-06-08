@@ -2,9 +2,10 @@
 <div class="video">
   <header>
     <h1>{{ video.title }}</h1>
+    <router-link :to="{ name: 'Home'}">Return to home</router-link>
   </header>
   <div class="video__player">
-    <video controls class="video-js vjs-default-skin" data-setup="{}" v-bind:poster="video.poster">
+    <video controls class="video-js vjs-default-skin vjs-16-9" data-setup="{}" v-bind:poster="video.poster">
       <source v-bind:src="video.video" type="video/mp4">
     </video>
   </div>
@@ -28,21 +29,44 @@ export default {
       });
       return thisVideo;
     }
+  },
+  mounted() {
+    // Add listeners to enable 'theatre-mode'
+    document.querySelector('.video video').addEventListener('play', function () {
+        document.querySelector('body').classList.add('video--playing')
+    })
+    document.querySelector('.video video').addEventListener('pause', function () {
+        document.querySelector('body').classList.remove('video--playing')
+    })
   }
 }
 </script>
 
 <style lang="scss">
-h1{
-  margin: 0;
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h1{
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color:inherit;
+  }
 }
 .video {
     &__player {
         max-height: 600px;
-        height: calc(100vh - 4rem);
+        height: calc(100vh - 5rem);
         display: flex;
         align-items: center;
         justify-content: center;
+        max-width: 1100px;
+        padding: 0 17px;
+        margin: 0 auto;
     }
 
     .video-js {
