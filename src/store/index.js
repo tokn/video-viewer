@@ -11,8 +11,8 @@ export default new Vuex.Store({
     videosLoaded: false
   },
   mutations: {
-    storeVideos(state, movieData) {
-      state.videos = movieData
+    storeVideos(state, videoData) {
+      state.videos = videoData
       state.videosLoaded = true
     }
   },
