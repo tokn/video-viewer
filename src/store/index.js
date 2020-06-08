@@ -7,12 +7,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    movies: [],
-    moviesLoaded: false
+    videos: [],
+    videosLoaded: false
   },
   mutations: {
     storeVideos(state, movieData) {
-      state.movies = movieData
+      state.videos = movieData
+      state.videosLoaded = true
     }
   },
   actions: {
